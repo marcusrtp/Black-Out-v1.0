@@ -1,0 +1,331 @@
+﻿<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Black-Out</title>
+    <link rel="stylesheet" href="styles.css?v=frequency-74-to-95">
+    <link rel="stylesheet" href="rooms.css?v=frequency-74-to-95">
+    <link rel="stylesheet" href="game-polish.css?v=frequency-74-to-95">
+  </head>
+  <body>
+    <section class="start-screen" id="startScreen" aria-labelledby="startTitle">
+      <aside class="creator-banner" id="creatorBanner" aria-label="Message créateur">
+        <p>Ce projet a été mis en place par un novice qui n'avait jamais eu l'occasion d'utiliser Codex!</p>
+        <button class="icon-button" id="closeCreatorBanner" type="button" aria-label="Fermer le bandeau">x</button>
+      </aside>
+      <div class="start-panel">
+        <p class="eyebrow">Hackathon Vivatech 2026</p>
+        <h1 id="startTitle">Black-Out</h1>
+        <p class="start-pitch">
+          Le <strong>réseau électrique de la ville</strong> est en tension, la <strong>fréquence chute</strong> et la ville risque la <strong>panne générale</strong>.
+          Nous avons <strong>12 minutes</strong> pour explorer les salles, résoudre les énigmes du <strong>mix énergétique</strong> et récupérer les <strong>fragments du code final</strong>.
+          Trouve aussi les <strong>easter eggs cachés</strong>, entre le <strong>code</strong> et restaure les <strong>95 Hz</strong> avant la coupure.
+        </p>
+        <div class="start-stats" aria-label="Objectifs de partie">
+          <span>4 énigmes réseau</span>
+          <span>3 easter eggs</span>
+          <span>1 code final</span>
+        </div>
+        <div class="jury-promise" aria-label="Promesse pédagogique">
+          <strong>Objectif</strong>
+          <span>Comprendre en quelques minutes pourquoi un <strong>réseau électrique</strong> doit toujours équilibrer <strong>production</strong> et <strong>consommation</strong>.</span>
+        </div>
+        <p class="sponsor-heading">Sponsors de l'événement</p>
+        <div class="sponsor-strip" aria-label="Sponsors de l'événement">
+          <figure>
+            <img src="assets/sponsor-anis-ayari.png" alt="Anis Ayari">
+            <figcaption>Anis Ayari</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/easter-openai.png" alt="OpenAI">
+            <figcaption>OpenAI</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/easter-engie.png" alt="Engie">
+            <figcaption>Engie</figcaption>
+          </figure>
+        </div>
+        <div class="credits-card" aria-label="Crédits et making-of">
+          <strong>Crédits & making-of</strong>
+          <span>Prototype imaginé pour le Hackathon Vivatech 2026, construit entièrement avec Codex. Enrichi avec des easter eggs et un mode présentation jury. <strong>Un grand merci pour l'opportunité de fou à OpenAI, Engie et Anis Ayari (DefendIntelligence). ❤️❤️</strong></span>
+        </div>
+        <div class="start-actions">
+          <button class="primary-button start-button" id="startButton" type="button" disabled>Démarrer</button>
+          <button class="secondary-button start-button demo-button" id="demoButton" type="button" disabled>Mode jury</button>
+        </div>
+      </div>
+    </section>
+
+    <main class="game-shell">
+      <header class="hud" aria-label="État du réseau">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">Alerte réseau</p>
+            <h1>Black-Out</h1>
+          </div>
+        </div>
+
+        <button class="secondary-button home-button" id="homeButton" type="button">Accueil</button>
+        <span class="mode-badge hidden" id="modeBadge">Mode jury</span>
+
+        <div class="meters">
+          <section class="meter-card timer-card" aria-label="Temps restant">
+            <span class="label">Temps</span>
+            <strong id="timer">12:00</strong>
+          </section>
+          <section class="meter-card" aria-label="Fréquence du réseau">
+            <span class="label">Fréquence</span>
+            <strong id="frequency">74,0 Hz</strong>
+          </section>
+          <section class="meter-card gauge-card" aria-label="Jauge de surcharge">
+            <span class="label">Surcharge</span>
+            <div class="gauge-track">
+              <span id="gaugeFill"></span>
+            </div>
+            <strong id="gaugeText">100%</strong>
+          </section>
+        </div>
+      </header>
+
+      <section class="stage" aria-label="Appartement">
+        <nav class="room-nav" aria-label="Navigation entre les salles">
+          <button class="room-tab active" data-room-target="control" type="button">Salon de contrôle</button>
+          <button class="room-tab" data-room-target="mixroom" type="button">Bureau du mix</button>
+          <button class="room-tab" data-room-target="weatherroom" type="button">Station météo</button>
+          <button class="room-tab" data-room-target="laundry" type="button">Local technique</button>
+          <button class="room-tab" data-room-target="electrical" type="button">Tableau final</button>
+        </nav>
+
+        <div class="room room-control active" data-room="control">
+          <div class="room-title">
+            <p class="eyebrow">Salle 1</p>
+            <h2>Salon de contrôle</h2>
+          </div>
+          <button class="easter-egg easter-egg-control" data-egg-id="egg-mix" data-egg-number="1" type="button" aria-label="Easter egg OpenAI caché du salon de contrôle">
+            <img src="assets/easter-openai.png" alt="">
+          </button>
+
+          <button class="hotspot hotspot-screen" data-puzzle="balance" type="button">
+            <span>Écran de contrôle</span>
+          </button>
+          <button class="door door-next" data-room-target="mixroom" type="button">Bureau du mix</button>
+        </div>
+
+        <div class="room room-mixroom hidden-room" data-room="mixroom">
+          <div class="room-title">
+            <p class="eyebrow">Salle 2</p>
+            <h2>Bureau du mix</h2>
+          </div>
+          <button class="mix-info-marker mix-info-wind" type="button" aria-label="Part de l'éolien dans le mix électrique français">
+            ?
+            <span class="mix-info-tooltip">Éolien : 9,1 % du mix électrique 2025</span>
+          </button>
+          <button class="mix-info-marker mix-info-nuclear" type="button" aria-label="Part du nucléaire dans le mix électrique français">
+            ?
+            <span class="mix-info-tooltip">Nucléaire : 68,1 % du mix électrique 2025</span>
+          </button>
+          <button class="mix-info-marker mix-info-solar" type="button" aria-label="Part du solaire dans le mix électrique français">
+            ?
+            <span class="mix-info-tooltip">Solaire : 6,0 % du mix électrique 2025</span>
+          </button>
+          <button class="mix-info-marker mix-info-hydro" type="button" aria-label="Part de l'hydraulique dans le mix électrique français">
+            ?
+            <span class="mix-info-tooltip">Hydraulique : 11,4 % du mix électrique 2025</span>
+          </button>
+          <button class="easter-egg easter-egg-mix" data-egg-id="egg-laundry" data-egg-number="2" type="button" aria-label="Easter egg Engie caché du bureau du mix">
+            <img src="assets/easter-engie.png" alt="">
+          </button>
+          <button class="hotspot hotspot-cards" data-puzzle="mix" type="button">
+            <span>Cartes du mix</span>
+          </button>
+          <button class="door door-prev" data-room-target="control" type="button">Salon</button>
+          <button class="door door-next" data-room-target="weatherroom" type="button">Station météo</button>
+        </div>
+
+        <div class="room room-weatherroom hidden-room" data-room="weatherroom">
+          <div class="room-title">
+            <p class="eyebrow">Salle 3</p>
+            <h2>Station météo</h2>
+          </div>
+          <button class="hotspot hotspot-tablet" data-puzzle="weather" type="button">
+            <span>Tablette météo</span>
+          </button>
+          <button class="door door-prev" data-room-target="mixroom" type="button">Bureau du mix</button>
+          <button class="door door-next" data-room-target="laundry" type="button">Local technique</button>
+        </div>
+
+        <div class="room room-laundry hidden-room" data-room="laundry">
+          <div class="room-title">
+            <p class="eyebrow">Salle 4</p>
+            <h2>Local technique</h2>
+          </div>
+          <button class="tech-info-marker tech-info-washer" type="button" aria-label="Pourquoi décaler la machine à laver">
+            ?
+            <span class="tech-info-tooltip">Machine à laver : 10 % de la consommation flexible.</span>
+          </button>
+          <button class="tech-info-marker tech-info-dryer" type="button" aria-label="Pourquoi décaler le sèche-linge">
+            ?
+            <span class="tech-info-tooltip">Sèche-linge : 20 % de la consommation flexible.</span>
+          </button>
+          <button class="tech-info-marker tech-info-water" type="button" aria-label="Pourquoi décaler le chauffe-eau">
+            ?
+            <span class="tech-info-tooltip">Chauffe-eau : 25 % de la consommation flexible.</span>
+          </button>
+          <button class="tech-info-marker tech-info-car" type="button" aria-label="Pourquoi décaler la recharge de voiture">
+            ?
+            <span class="tech-info-tooltip">Recharge voiture : 45 % de la consommation flexible.</span>
+          </button>
+          <button class="easter-egg easter-egg-laundry" data-egg-id="egg-control" data-egg-number="3" type="button" aria-label="Easter egg livre caché du local technique">
+            <img src="assets/easter-super-pouvoir-ia.png" alt="">
+          </button>
+          <button class="hotspot hotspot-programmer" data-puzzle="offpeak" type="button">
+            <span>Programmateur</span>
+          </button>
+          <button class="door door-prev" data-room-target="weatherroom" type="button">Station météo</button>
+          <button class="door door-next" data-room-target="electrical" type="button">Tableau final</button>
+        </div>
+
+        <div class="room room-electrical hidden-room" data-room="electrical">
+          <div class="room-title">
+            <p class="eyebrow">Salle finale</p>
+            <h2>Tableau électrique</h2>
+          </div>
+          <button class="hotspot hotspot-final" data-puzzle="final" type="button">
+            <span>Tableau électrique</span>
+          </button>
+          <button class="door door-prev" data-room-target="laundry" type="button">Local technique</button>
+        </div>
+      </section>
+
+      <aside class="side-panel" aria-label="Progression">
+        <section>
+          <h2>Fragments du code</h2>
+          <div class="code-groups" id="codeSlots">
+            <div class="code-group code-group-main">
+              <p>Code réseau</p>
+              <div class="code-slots">
+                <span>?</span>
+                <span>?</span>
+                <span>?</span>
+                <span>?</span>
+              </div>
+            </div>
+            <div class="code-group code-group-bonus">
+              <p>Fragments cachés</p>
+              <div class="code-slots code-slots-bonus">
+                <span>?</span>
+                <span>?</span>
+                <span>?</span>
+              </div>
+            </div>
+            <div class="final-code-preview">
+              <span>Code final</span>
+              <strong id="finalCodePreview">???????</strong>
+            </div>
+          </div>
+        </section>
+        <section class="jury-tools hidden" id="juryTools" aria-label="Outils de présentation jury">
+          <h2>Mode jury</h2>
+          <p id="juryLesson">Choisis une salle pour afficher son message pédagogique.</p>
+          <p class="jury-room-label">Accéder directement salle :</p>
+          <div class="jury-room-grid" aria-label="Accès direct aux salles">
+            <button data-jury-room="control" type="button" aria-label="Accéder à la salle 1">1</button>
+            <button data-jury-room="mixroom" type="button" aria-label="Accéder à la salle 2">2</button>
+            <button data-jury-room="weatherroom" type="button" aria-label="Accéder à la salle 3">3</button>
+            <button data-jury-room="laundry" type="button" aria-label="Accéder à la salle 4">4</button>
+            <button data-jury-room="electrical" type="button" aria-label="Accéder à la salle finale">5</button>
+          </div>
+          <div class="jury-action-grid">
+            <button id="jurySolveCurrent" type="button">Résoudre cette énigme</button>
+            <button id="juryVictoryButton" type="button">Déclencher la victoire</button>
+            <button class="jury-defeat-button" id="juryDefeatButton" type="button">Déclencher la défaite</button>
+          </div>
+        </section>
+        <section class="journal-section">
+          <h2>Journal</h2>
+          <ul id="logList">
+            <li>La porte est verrouillée. Stabilise le réseau.</li>
+          </ul>
+        </section>
+        <section class="guide-panel">
+          <h2>Boussole</h2>
+          <p id="guideStep">Explore les salles dans l'ordre. Chaque énigme donne une idée simple pour comprendre le réseau.</p>
+        </section>
+      </aside>
+    </main>
+
+    <div class="discovery-toast hidden" id="discoveryToast" aria-live="polite">Indice caché découvert.</div>
+
+    <div class="dialogue-layer hidden" id="dialogueLayer" role="dialog" aria-modal="true" aria-labelledby="dialogueSpeaker">
+      <section class="dialogue-bubble">
+        <div class="dialogue-avatar" aria-hidden="true">
+          <img src="assets/network-brain-logo.png" alt="">
+        </div>
+        <div class="dialogue-content">
+          <p class="eyebrow" id="dialogueSpeaker">Dispatch réseau</p>
+          <p id="dialogueText"></p>
+          <div class="dialogue-actions">
+            <button class="primary-button" id="dialogueNext" type="button">Compris</button>
+          </div>
+        </div>
+      </section>
+      <div class="dialogue-character" aria-hidden="true">
+        <div class="pixel-head">
+          <span class="pixel-cap">
+            <img src="assets/network-brain-logo.png" alt="">
+          </span>
+          <span class="pixel-cap-brim"></span>
+          <span class="pixel-hair"></span>
+          <span class="pixel-ear pixel-ear-left"></span>
+          <span class="pixel-ear pixel-ear-right"></span>
+          <span class="pixel-eye pixel-eye-left"></span>
+          <span class="pixel-eye pixel-eye-right"></span>
+          <span class="pixel-glasses pixel-glasses-left"></span>
+          <span class="pixel-glasses pixel-glasses-right"></span>
+          <span class="pixel-mouth"></span>
+          <span class="pixel-chin-line"></span>
+        </div>
+        <div class="pixel-body">
+          <span class="pixel-hand pixel-hand-left"></span>
+          <span class="pixel-hand pixel-hand-right"></span>
+        </div>
+        <div class="pixel-legs">
+          <span class="pixel-leg pixel-leg-left"></span>
+          <span class="pixel-leg pixel-leg-right"></span>
+          <span class="pixel-shoe pixel-shoe-left"></span>
+          <span class="pixel-shoe pixel-shoe-right"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="modalBackdrop">
+      <article class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="icon-button close-button" id="closeModal" type="button" aria-label="Fermer">x</button>
+        <p class="eyebrow" id="modalKicker">Énigme</p>
+        <h2 id="modalTitle"></h2>
+        <div id="modalBody"></div>
+        <div class="modal-actions">
+          <button class="secondary-button" id="hintButton" type="button">Indice (-20 s)</button>
+          <button class="primary-button" id="submitButton" type="button">Valider</button>
+        </div>
+        <p class="feedback" id="feedback" aria-live="polite"></p>
+      </article>
+    </div>
+
+    <div class="end-screen hidden" id="endScreen" role="dialog" aria-modal="true">
+      <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+      <div>
+        <p class="eyebrow" id="endKicker"></p>
+        <h2 id="endTitle"></h2>
+        <div id="endText"></div>
+        <button class="primary-button" id="restartButton" type="button">Rejouer</button>
+      </div>
+    </div>
+
+    <script src="dialogues.js?v=frequency-74-to-95"></script>
+    <script src="puzzles.js?v=frequency-74-to-95"></script>
+    <script src="script.js?v=frequency-74-to-95"></script>
+  </body>
+</html>
