@@ -1,5 +1,17 @@
 /* Room-specific states and pixel-art gameplay feedback. */
 
+.room {
+  --room-decor-offset: 24px;
+}
+
+.room .hotspot,
+.room .door,
+.room .easter-egg,
+.room .mix-info-marker,
+.room .tech-info-marker {
+  translate: 0 var(--room-decor-offset);
+}
+
 .room:has(.hotspot.solved) .room-title {
   border-color: rgba(128, 255, 90, 0.56);
   box-shadow: 0 0 18px rgba(128, 255, 90, 0.16), var(--pixel-shadow);
@@ -10,7 +22,7 @@
   background:
     linear-gradient(rgba(4, 8, 13, 0.28), rgba(4, 8, 13, 0.34)),
     radial-gradient(circle at 50% 38%, rgba(128, 255, 90, 0.12), transparent 44%),
-    url("assets/control-room-4x3.png") center 46px / cover no-repeat;
+    url("assets/control-room-4x3.png") center 24px / cover no-repeat;
 }
 
 .room-control::before {
@@ -40,7 +52,7 @@
   background:
     linear-gradient(rgba(4, 8, 13, 0.18), rgba(4, 8, 13, 0.28)),
     radial-gradient(circle at 52% 38%, rgba(90, 169, 230, 0.12), transparent 48%),
-    url("assets/mix-room.png") center 46px / cover no-repeat;
+    url("assets/mix-room.png") center 24px / cover no-repeat;
 }
 
 .room-mixroom::before {
@@ -219,7 +231,7 @@
   background:
     linear-gradient(rgba(4, 8, 13, 0.18), rgba(4, 8, 13, 0.3)),
     radial-gradient(circle at 52% 38%, rgba(90, 169, 230, 0.14), transparent 48%),
-    url("assets/weather-room.png") center 46px / cover no-repeat;
+    url("assets/weather-room.png") center 24px / cover no-repeat;
 }
 
 .room-weatherroom::before {
@@ -249,7 +261,7 @@
   background:
     linear-gradient(rgba(4, 8, 13, 0.16), rgba(4, 8, 13, 0.28)),
     radial-gradient(circle at 52% 42%, rgba(79, 209, 165, 0.12), transparent 48%),
-    url("assets/technical-room.png") center 46px / cover no-repeat;
+    url("assets/technical-room.png") center 24px / cover no-repeat;
 }
 
 .room-laundry::before {
@@ -279,7 +291,7 @@
   background:
     linear-gradient(rgba(4, 8, 13, 0.18), rgba(4, 8, 13, 0.32)),
     radial-gradient(circle at 52% 42%, rgba(128, 255, 90, 0.14), transparent 48%),
-    url("assets/final-room.png") center 46px / cover no-repeat;
+    url("assets/final-room.png") center 24px / cover no-repeat;
 }
 
 .room-electrical::before {

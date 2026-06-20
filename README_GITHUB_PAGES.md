@@ -32,4 +32,4 @@ Quand une modification est faite à la racine du projet, copier dans `publish/` 
 Les fichiers chargés par `index.html` utilisent un paramètre `?v=...`.
 Changer cette valeur après une modification force GitHub Pages et le navigateur à recharger la bonne version.
 
-Version actuelle : `room-background-lower`.
+Version actuelle : `room-elements-aligned`.

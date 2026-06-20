@@ -3322,6 +3322,7 @@ input[type="checkbox"] {
   .room {
     height: min(58dvh, 420px);
     min-height: 330px;
+    --room-decor-offset: 14px;
   }
 
   .room-control,
@@ -3329,7 +3330,7 @@ input[type="checkbox"] {
   .room-weatherroom,
   .room-laundry,
   .room-electrical {
-    background-position: center, center, center 28px !important;
+    background-position: center, center, center 14px !important;
     background-repeat: no-repeat, no-repeat, no-repeat !important;
     background-size: auto, auto, contain !important;
   }
