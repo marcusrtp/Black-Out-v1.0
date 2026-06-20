@@ -3329,7 +3329,7 @@ input[type="checkbox"] {
   .room-weatherroom,
   .room-laundry,
   .room-electrical {
-    background-position: center, center, center !important;
+    background-position: center, center, center top !important;
     background-repeat: no-repeat, no-repeat, no-repeat !important;
     background-size: auto, auto, contain !important;
   }
